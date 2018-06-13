@@ -1,0 +1,20 @@
+<html>
+<header>
+	<script>
+		function setKey(value) {
+			frame = frames[0];
+			// frame.setKey(value);
+			frame.postMessage({ method: 'setKey', value }, '*');
+		}
+	</script>
+</header>
+
+<body>
+	<div>
+		<input type="text" id="key" value="dv">
+		<button onclick="setKey(key.value);">set key</button>
+	</div>
+	<iframe src="http://localhost:8081" frameborder="0"></iframe>
+</body>
+
+</html>
