@@ -1,13 +1,13 @@
 <html>
-<header>
+<head>
 	<script>
 		function setKey(value) {
 			frame = frames[0];
-			frame.setKey(value);
-			// frame.postMessage({ method: 'setKey', value }, '*');
+			// frame.setKey(value);
+			frame.postMessage({ method: 'setKey', value }, '*');
 		}
 	</script>
-</header>
+</head>
 
 <body>
 	<div>
