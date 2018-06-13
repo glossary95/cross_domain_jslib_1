@@ -1,4 +1,5 @@
 <html>
+
 <head>
 	<script>
 		function setKey(value) {
@@ -19,3 +20,26 @@
 </body>
 
 </html>
+
+<!--
+<iframe id="ifr" src="b.com/index.html"></iframe>
+
+<script type="text/javascript">
+	window.onload = function() {
+		var ifr = document.getElementById('ifr');
+		var targetOrigin = 'http://b.com'; // 若写成'http://b.com/c/proxy.html'效果一样
+		// 若写成'http://c.com'就不会执行postMessage了
+		ifr.contentWindow.postMessage('I was there!', targetOrigin);
+	};
+</script>
+
+<script type="text/javascript">
+	window.addEventListener('message', function(event) {
+		// 通过origin属性判断消息来源地址
+		if (event.origin == 'http://a.com') {
+			alert(event.data); // 弹出"I was there!"
+			alert(event.source); // 对a.com、index.html中window对象的引用
+			// 但由于同源策略，这里event.source不可以访问window对象
+		}
+	}, false);
+</script> -->
