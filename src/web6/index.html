@@ -15,7 +15,9 @@
 				ifr = document.createElement('iframe'),
 				loadFunc = function() {
 					if (isFirst) {
-						ifr.contentWindow.location = 'temp.html';
+						// func(ifr.contentWindow.name);
+						// ifr.contentWindow.location = 'temp.html';
+						ifr.src = 'temp.html';
 						isFirst = false;
 					} else {
 						func(ifr.contentWindow.name);
@@ -44,7 +46,6 @@
 		<button onclick="setKey(key.value);">set key</button>
 	</div>
 
-	<iframe src="" frameborder="0"></iframe>
 </body>
 
 </html>
