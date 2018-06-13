@@ -1,0 +1,48 @@
+<html>
+
+<head>
+	<script>
+
+		function setKey(value) {
+			//我们请求的内容在哪里？
+			//我们可以在chorme调试面板的source中看到script引入的内容
+			loadScript('http://suggestion.baidu.com/su?wd=w', function() {
+				console.log('loaded');
+			});
+		}
+
+		function loadScript(url, func) {
+			var head = document.head || document.getElementByTagName('head')[0];
+			var script = document.createElement('script');
+			script.src = url;
+
+			script.onload = script.onreadystatechange = function() {
+				if (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
+					func();
+					script.onload = script.onreadystatechange = null;
+				}
+			};
+
+			// head.insertBefore(script, 0);
+			head.append(script);
+		}
+
+		baidu = {
+			sug: function(data) {
+				console.log(data);
+				localStorage.setItem('baidu.sug', data);
+			}
+		}
+
+	</script>
+</head>
+
+<body>
+	<p>web5</p>
+	<div>
+		<input type="text" id="key" value="dv">
+		<button onclick="setKey(key.value);">set key</button>
+	</div>
+</body>
+
+</html>
