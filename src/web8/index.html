@@ -1,0 +1,34 @@
+<html>
+
+<head>
+	<script>
+
+		function setKey() {
+			function handleResponse(response) {
+				console.log('The responsed data is: ' + response.data);
+			}
+			var script = document.createElement('script');
+			script.src = 'http://www.baidu.com/json/?callback=handleResponse';
+			document.head.append(script);
+			// document.body.insertBefore(script, document.body.firstChild);
+			/*handleResonse({"data": "zhe"})*/
+			//原理如下：
+			//当我们通过script标签请求时
+			//后台就会根据相应的参数(json,handleResponse)
+			//来生成相应的json数据(handleResponse({"data": "zhe"}))
+			//最后这个返回的json数据(代码)就会被放在当前js文件中被执行
+			//至此跨域通信完成
+		}
+
+	</script>
+</head>
+
+<body>
+	<p>web8</p>
+	<div>
+		<input type="text" id="key" value="dv">
+		<button onclick="setKey(key.value);">set key</button>
+	</div>
+</body>
+
+</html>
