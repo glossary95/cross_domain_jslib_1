@@ -1,0 +1,50 @@
+<html>
+
+<head>
+	<script>
+
+		function setKey(value) {
+			proxy('http://localhost:8081/name-data.html', function(data) {
+				console.log(data);
+			});
+		}
+
+
+		function proxy(url, func) {
+			var isFirst = true,
+				ifr = document.createElement('iframe'),
+				loadFunc = function() {
+					if (isFirst) {
+						ifr.contentWindow.location = 'temp.html';
+						isFirst = false;
+					} else {
+						func(ifr.contentWindow.name);
+						ifr.contentWindow.close();
+						document.body.removeChild(ifr);
+						ifr.src = '';
+						ifr = null;
+					}
+				};
+
+			ifr.src = url;
+			ifr.style.display = 'none';
+			if (ifr.attachEvent) ifr.attachEvent('onload', loadFunc);
+			else ifr.onload = loadFunc;
+
+			document.body.appendChild(ifr);
+		}
+
+	</script>
+</head>
+
+<body>
+	<p>web6</p>
+	<div>
+		<input type="text" id="key" value="dv">
+		<button onclick="setKey(key.value);">set key</button>
+	</div>
+
+	<iframe src="" frameborder="0"></iframe>
+</body>
+
+</html>
