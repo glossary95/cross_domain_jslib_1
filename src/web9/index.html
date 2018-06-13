@@ -1,0 +1,35 @@
+<html>
+
+<head>
+	<script>
+
+		function setKey() {
+			var ws = new WebSocket("wss://echo.websocket.org");
+
+			ws.onopen = function(evt) {
+				console.log("Connection open ...");
+				ws.send("Hello WebSockets!");
+			};
+
+			ws.onmessage = function(evt) {
+				console.log("Received Message: " + evt.data);
+				ws.close();
+			};
+
+			ws.onclose = function(evt) {
+				console.log("Connection closed.");
+			};
+		}
+
+	</script>
+</head>
+
+<body>
+	<p>web9</p>
+	<div>
+		<input type="text" id="key" value="dv">
+		<button onclick="setKey(key.value);">set key</button>
+	</div>
+</body>
+
+</html>
